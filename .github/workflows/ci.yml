@@ -1,0 +1,90 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend · lint, types, tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.8.8"
+          enable-cache: true
+      - name: Set up Python
+        run: uv python install 3.13
+      - name: Install
+        run: uv sync --frozen --group dev --extra bench
+      - name: Ruff (lint + format)
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Mypy
+        run: uv run mypy nexus
+      - name: Tests
+        run: uv run pytest -q --cov=nexus --cov-report=xml --cov-report=term -m "not llm"
+      - name: Determinism gate (replay + fork digests)
+        run: uv run python scripts/smoke_sim.py tiny 1800
+      - name: Micro-benchmark (tiny, all strategies)
+        run: uv run python -m benchmarks.run_benchmark --scale tiny --minutes 20 --seeds 1 --out results/ci.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: backend/coverage.xml
+
+  frontend:
+    name: Frontend · lint, typecheck, build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+          NEXT_PUBLIC_WS_URL: ws://localhost:8000/ws/live
+
+  docker:
+    name: Docker · build images
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: backend
+          push: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: frontend
+          push: false
+          build-args: |
+            NEXT_PUBLIC_API_URL=http://localhost:8000
+            NEXT_PUBLIC_WS_URL=ws://localhost:8000/ws/live
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
