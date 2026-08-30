@@ -18,20 +18,20 @@
 
 | #   | Milestone                       | Definition of done                                                                                                                                      | Status |
 |-----|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------|
-| M0  | Foundation                      | Monorepo, tooling (uv / ruff / mypy / pytest), Docker Compose, CI skeleton, docs skeleton                                                                | ☐ |
-| M1  | Digital Twin core               | Entities, `WorldState`, spatial grid + semantic spatial graph, parametric warehouse layout, snapshot / restore, world hash                               | ☐ |
-| M2  | Event engine                    | Typed events, idempotent append-only `EventStore`, reducer, replay, event bus                                                                            | ☐ |
-| M3  | Simulation engine               | Deterministic discrete-time engine, kinematics + battery, A* pathfinding w/ congestion, order generator, fault injector, KPI metrics, world fork         | ☐ |
-| M4  | Optimization engine             | Multi-objective cost, constraints, CP-SAT assignment (OR-Tools) w/ Hungarian + greedy fallbacks, GA allocator, EDF scheduling, congestion-aware routing | ☐ |
-| M5  | Forecasting                     | Demand (Holt-Winters), battery exhaustion, zone congestion, bottleneck detection                                                                         | ☐ |
-| M6  | Agent runtime                   | Ops Manager, Forecaster, Planner (LLM + deterministic fallback), Constraint Validator, Optimizer, Simulator, Risk, Approval policy, Executor; decision records | ☐ |
-| M7  | What-If engine                  | Scenario DSL (remove robots, demand spike, zone closure, dock closure, charger reduction, inventory move), parallel evaluation, comparison report        | ☐ |
-| M8  | API, persistence, observability | FastAPI REST + WebSocket live stream, Postgres event / snapshot / decision persistence, Redis pub/sub, Prometheus metrics, OpenTelemetry, live runtime loop | ☐ |
-| M9  | Twin UI                         | Next.js + TypeScript + Three.js 3D twin, KPI bar, event feed, decision / plan panel, what-if lab, NLQ console, timeline playback, comparison charts     | ☐ |
-| M10 | Benchmarks                      | 4 strategies × 3 scales × N seeds; KPIs; results JSON + charts + `docs/BENCHMARKS.md`                                                                    | ☐ |
-| M11 | Documentation                   | README, ARCHITECTURE, DIGITAL_TWIN, SIMULATION, OPTIMIZATION, AGENTS, SAFETY, WHAT_IF, API, DOMAIN_EXTENSION, ADRs                                       | ☐ |
-| M12 | Ship                            | Public GitHub repo, CI green, release tag                                                                                                                | ☐ |
-| M13 | Pitch deck                      | Investor / company deck with charts, tables, trees, benchmark graphs, roadmap, business model                                                            | ☐ |
+| M0  | Foundation                      | Monorepo, tooling (uv / ruff / mypy / pytest), Docker Compose, CI skeleton, docs skeleton                                                                | ✅ |
+| M1  | Digital Twin core               | Entities, `WorldState`, spatial grid + semantic spatial graph, parametric warehouse layout, snapshot / restore, world hash                               | ✅ |
+| M2  | Event engine                    | Typed events, idempotent append-only `EventStore`, reducer, replay, event bus                                                                            | ✅ |
+| M3  | Simulation engine               | Deterministic discrete-time engine, kinematics + battery, A* pathfinding w/ congestion, order generator, fault injector, KPI metrics, world fork         | ✅ |
+| M4  | Optimization engine             | Multi-objective cost, constraints, CP-SAT assignment (OR-Tools) w/ Hungarian + greedy fallbacks, GA allocator, EDF scheduling, congestion-aware routing | ✅ |
+| M5  | Forecasting                     | Demand (Holt-Winters), battery exhaustion, zone congestion, bottleneck detection                                                                         | ✅ |
+| M6  | Agent runtime                   | Ops Manager, Forecaster, Planner (LLM + deterministic fallback), Constraint Validator, Optimizer, Simulator, Risk, Approval policy, Executor; decision records | ✅ |
+| M7  | What-If engine                  | Scenario DSL (remove robots, demand spike, zone closure, dock closure, charger reduction, inventory move), parallel evaluation, comparison report        | ✅ |
+| M8  | API, persistence, observability | FastAPI REST + WebSocket live stream, Postgres event / snapshot / decision persistence, Redis pub/sub, Prometheus metrics, OpenTelemetry, live runtime loop | ✅ |
+| M9  | Twin UI                         | Next.js + TypeScript + Three.js 3D twin, KPI bar, event feed, decision / plan panel, what-if lab, NLQ console, timeline playback, comparison charts     | ✅ |
+| M10 | Benchmarks                      | 4 strategies × 3 scales × N seeds; KPIs; results JSON + charts + `docs/BENCHMARKS.md`                                                                    | ✅ |
+| M11 | Documentation                   | README, ARCHITECTURE, DIGITAL_TWIN, SIMULATION, OPTIMIZATION, AGENTS, SAFETY, WHAT_IF, API, DOMAIN_EXTENSION, ADRs                                       | ✅ |
+| M12 | Ship                            | Public GitHub repo, CI green, release tag                                                                                                                | ✅ |
+| M13 | Pitch deck                      | Investor / company deck with charts, tables, trees, benchmark graphs, roadmap, business model                                                            | ✅ |
 
 ## KPI definitions (used everywhere: metrics, benchmarks, UI, deck)
 
