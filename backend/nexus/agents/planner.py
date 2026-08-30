@@ -441,7 +441,9 @@ class PlannerAgent:
                 ),
             },
         ]
-        result = self.llm.structured(messages, PlanSet, retries=1)
+        # Incident-time budget: the twin keeps degrading while we plan, so the LLM gets 30 s, not the
+        # full chat timeout — the deterministic playbooks are always ready as candidates regardless.
+        result = self.llm.structured(messages, PlanSet, retries=1, timeout_s=min(30.0, self.llm.timeout_s))
         if result is None:
             return []
         plans: list[PlanModel] = []

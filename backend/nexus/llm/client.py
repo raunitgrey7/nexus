@@ -173,6 +173,7 @@ class LLMClient:
         retries: int = 1,
         temperature: float | None = None,
         max_tokens: int = 1600,
+        timeout_s: float | None = None,
     ) -> T | None:
         """Chat constrained to ``model_cls``'s JSON schema; validated; retried once on invalid output."""
         schema = model_cls.model_json_schema()
@@ -180,7 +181,13 @@ class LLMClient:
         history = list(messages)
         while attempt <= retries:
             attempt += 1
-            raw = self.chat(history, json_schema=schema, temperature=temperature, max_tokens=max_tokens)
+            raw = self.chat(
+                history,
+                json_schema=schema,
+                temperature=temperature,
+                max_tokens=max_tokens,
+                timeout_s=timeout_s,
+            )
             if raw is None:
                 return None
             try:
