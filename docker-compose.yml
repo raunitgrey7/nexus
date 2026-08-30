@@ -1,0 +1,110 @@
+name: nexus
+
+# Host ports are overridable so NEXUS can run next to other stacks:
+#   NEXUS_API_PORT=8010 NEXUS_UI_PORT=3010 docker compose up --build
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: nexus
+      POSTGRES_DB: nexus
+    ports:
+      - "${NEXUS_PG_PORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./deploy/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus -d nexus"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${NEXUS_REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    environment:
+      NEXUS_DATABASE_URL: postgresql+asyncpg://nexus:nexus@postgres:5432/nexus
+      NEXUS_REDIS_URL: redis://redis:6379/0
+      NEXUS_OLLAMA_URL: ${NEXUS_OLLAMA_URL:-http://host.docker.internal:11434}
+      NEXUS_LLM_MODEL: ${NEXUS_LLM_MODEL:-qwen2.5:7b}
+      NEXUS_LLM_ENABLED: ${NEXUS_LLM_ENABLED:-true}
+      NEXUS_DEFAULT_SCALE: ${NEXUS_DEFAULT_SCALE:-small}
+      NEXUS_CORS_ORIGINS: '["http://localhost:${NEXUS_UI_PORT:-3000}","http://127.0.0.1:${NEXUS_UI_PORT:-3000}","http://localhost:3000"]'
+      NEXUS_LOG_JSON: "true"
+    ports:
+      - "${NEXUS_API_PORT:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request;urllib.request.urlopen('http://localhost:8000/api/health')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:${NEXUS_API_PORT:-8000}
+        NEXT_PUBLIC_WS_URL: ws://localhost:${NEXUS_API_PORT:-8000}/ws/live
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:${NEXUS_API_PORT:-8000}
+      NEXT_PUBLIC_WS_URL: ws://localhost:${NEXUS_API_PORT:-8000}/ws/live
+    ports:
+      - "${NEXUS_UI_PORT:-3000}:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.53.0
+    volumes:
+      - ./deploy/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "${NEXUS_PROM_PORT:-9090}:9090"
+    depends_on:
+      - backend
+
+  grafana:
+    image: grafana/grafana:11.1.0
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: nexus
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+    volumes:
+      - ./deploy/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./deploy/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "${NEXUS_GRAFANA_PORT:-3001}:3000"
+    depends_on:
+      - prometheus
+
+  # Optional: run the LLM inside compose instead of on the host (`docker compose --profile llm up`).
+  ollama:
+    image: ollama/ollama:latest
+    profiles: ["llm"]
+    ports:
+      - "${NEXUS_OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  pgdata:
+  ollama:

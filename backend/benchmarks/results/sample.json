@@ -1,0 +1,640 @@
+{
+ "scales": {
+  "tiny": {
+   "strategies": {
+    "baseline": {
+     "runs": [
+      {
+       "scale": "tiny",
+       "seed": 42,
+       "strategy": "baseline",
+       "robots": 4,
+       "zones": 4,
+       "orders_per_hour": 90.0,
+       "kpis": {
+        "tick": 1200,
+        "sim_hours": 0.3333,
+        "orders_created": 25,
+        "orders_delivered": 23,
+        "orders_open": 2,
+        "orders_pending": 0,
+        "orders_late": 0,
+        "orders_overdue_open": 0,
+        "orders_cancelled": 0,
+        "avg_fulfillment_min": 1.454,
+        "p50_fulfillment_min": 1.467,
+        "p95_fulfillment_min": 2.05,
+        "sla_breach_rate": 0.0,
+        "sla_breach_rate_projected": 0.0,
+        "throughput_per_hour": 69.0,
+        "robot_utilization": 0.40521,
+        "robot_availability": 1.0,
+        "robots_total": 4,
+        "robots_operational": 4,
+        "distance_total": 1454,
+        "energy_total": 31.48,
+        "congestion_index": 0.0,
+        "wait_ticks_per_robot_hour": 0.0,
+        "replans": 0,
+        "failures": 0,
+        "charging_sessions": 0,
+        "inventory_units": 5299,
+        "avg_lateness_min": 0.0
+       },
+       "score": 2.4195,
+       "wall_s": 0.18,
+       "ticks_per_second": 6711.4,
+       "diagnostics": {
+        "max_wait_ticks": 0.0,
+        "min_battery": 62.54,
+        "zone_max_ratio": 1.0,
+        "overcap_ticks": 0.0,
+        "overcap_share": 0.0,
+        "stuck_robot_ticks": 0.0,
+        "charger_starved_ticks": 0.0,
+        "stockouts": 0.0,
+        "failures": 0.0,
+        "replans": 0.0,
+        "events": 3033.0,
+        "allocations": 0.0
+       },
+       "timeline": [
+        {
+         "tick": 0,
+         "open": 0,
+         "delivered": 0,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.0
+        },
+        {
+         "tick": 300,
+         "open": 1,
+         "delivered": 4,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.30583
+        },
+        {
+         "tick": 600,
+         "open": 1,
+         "delivered": 12,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.44417
+        },
+        {
+         "tick": 900,
+         "open": 0,
+         "delivered": 22,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.51167
+        },
+        {
+         "tick": 1200,
+         "open": 2,
+         "delivered": 23,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.40521
+        }
+       ]
+      }
+     ],
+     "kpis_mean": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 1.454,
+      "p95_fulfillment_min": 2.05,
+      "throughput_per_hour": 69.0,
+      "robot_utilization": 0.40521,
+      "congestion_index": 0.0,
+      "distance_total": 1454.0,
+      "energy_total": 31.48,
+      "orders_delivered": 23.0,
+      "orders_open": 2.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "kpis_std": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 0.0,
+      "p95_fulfillment_min": 0.0,
+      "throughput_per_hour": 0.0,
+      "robot_utilization": 0.0,
+      "congestion_index": 0.0,
+      "distance_total": 0.0,
+      "energy_total": 0.0,
+      "orders_delivered": 0.0,
+      "orders_open": 0.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "wall_s_mean": 0.18,
+     "ticks_per_second": 6711.4,
+     "planning": {
+      "decisions": 0.0,
+      "simulated": 0.0
+     }
+    },
+    "optimized": {
+     "runs": [
+      {
+       "scale": "tiny",
+       "seed": 42,
+       "strategy": "optimized",
+       "robots": 4,
+       "zones": 4,
+       "orders_per_hour": 90.0,
+       "kpis": {
+        "tick": 1200,
+        "sim_hours": 0.3333,
+        "orders_created": 25,
+        "orders_delivered": 23,
+        "orders_open": 2,
+        "orders_pending": 1,
+        "orders_late": 0,
+        "orders_overdue_open": 0,
+        "orders_cancelled": 0,
+        "avg_fulfillment_min": 1.499,
+        "p50_fulfillment_min": 1.467,
+        "p95_fulfillment_min": 2.09,
+        "sla_breach_rate": 0.0,
+        "sla_breach_rate_projected": 0.0,
+        "throughput_per_hour": 69.0,
+        "robot_utilization": 0.38854,
+        "robot_availability": 1.0,
+        "robots_total": 4,
+        "robots_operational": 4,
+        "distance_total": 1366,
+        "energy_total": 29.72,
+        "congestion_index": 0.0,
+        "wait_ticks_per_robot_hour": 0.0,
+        "replans": 0,
+        "failures": 0,
+        "charging_sessions": 0,
+        "inventory_units": 5299,
+        "avg_lateness_min": 0.0
+       },
+       "score": 2.4677,
+       "wall_s": 0.21,
+       "ticks_per_second": 5752.6,
+       "diagnostics": {
+        "max_wait_ticks": 0.0,
+        "min_battery": 62.64,
+        "zone_max_ratio": 1.0,
+        "overcap_ticks": 0.0,
+        "overcap_share": 0.0,
+        "stuck_robot_ticks": 0.0,
+        "charger_starved_ticks": 0.0,
+        "stockouts": 0.0,
+        "failures": 0.0,
+        "replans": 0.0,
+        "events": 2938.0,
+        "allocations": 0.0
+       },
+       "timeline": [
+        {
+         "tick": 0,
+         "open": 0,
+         "delivered": 0,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.0
+        },
+        {
+         "tick": 300,
+         "open": 1,
+         "delivered": 4,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.3025
+        },
+        {
+         "tick": 600,
+         "open": 1,
+         "delivered": 12,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.43292
+        },
+        {
+         "tick": 900,
+         "open": 0,
+         "delivered": 22,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.49111
+        },
+        {
+         "tick": 1200,
+         "open": 2,
+         "delivered": 23,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.38854
+        }
+       ]
+      }
+     ],
+     "kpis_mean": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 1.499,
+      "p95_fulfillment_min": 2.09,
+      "throughput_per_hour": 69.0,
+      "robot_utilization": 0.38854,
+      "congestion_index": 0.0,
+      "distance_total": 1366.0,
+      "energy_total": 29.72,
+      "orders_delivered": 23.0,
+      "orders_open": 2.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "kpis_std": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 0.0,
+      "p95_fulfillment_min": 0.0,
+      "throughput_per_hour": 0.0,
+      "robot_utilization": 0.0,
+      "congestion_index": 0.0,
+      "distance_total": 0.0,
+      "energy_total": 0.0,
+      "orders_delivered": 0.0,
+      "orders_open": 0.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "wall_s_mean": 0.21,
+     "ticks_per_second": 5752.6,
+     "planning": {
+      "decisions": 0.0,
+      "simulated": 0.0
+     }
+    },
+    "ai_planner": {
+     "runs": [
+      {
+       "scale": "tiny",
+       "seed": 42,
+       "strategy": "ai_planner",
+       "robots": 4,
+       "zones": 4,
+       "orders_per_hour": 90.0,
+       "kpis": {
+        "tick": 1200,
+        "sim_hours": 0.3333,
+        "orders_created": 25,
+        "orders_delivered": 23,
+        "orders_open": 2,
+        "orders_pending": 1,
+        "orders_late": 0,
+        "orders_overdue_open": 0,
+        "orders_cancelled": 0,
+        "avg_fulfillment_min": 1.499,
+        "p50_fulfillment_min": 1.467,
+        "p95_fulfillment_min": 2.09,
+        "sla_breach_rate": 0.0,
+        "sla_breach_rate_projected": 0.0,
+        "throughput_per_hour": 69.0,
+        "robot_utilization": 0.38854,
+        "robot_availability": 1.0,
+        "robots_total": 4,
+        "robots_operational": 4,
+        "distance_total": 1366,
+        "energy_total": 29.72,
+        "congestion_index": 0.0,
+        "wait_ticks_per_robot_hour": 0.0,
+        "replans": 0,
+        "failures": 0,
+        "charging_sessions": 0,
+        "inventory_units": 5299,
+        "avg_lateness_min": 0.0
+       },
+       "score": 2.4677,
+       "wall_s": 0.21,
+       "ticks_per_second": 5814.0,
+       "diagnostics": {
+        "max_wait_ticks": 0.0,
+        "min_battery": 62.64,
+        "zone_max_ratio": 1.0,
+        "overcap_ticks": 0.0,
+        "overcap_share": 0.0,
+        "stuck_robot_ticks": 0.0,
+        "charger_starved_ticks": 0.0,
+        "stockouts": 0.0,
+        "failures": 0.0,
+        "replans": 0.0,
+        "events": 2938.0,
+        "allocations": 0.0
+       },
+       "timeline": [
+        {
+         "tick": 0,
+         "open": 0,
+         "delivered": 0,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.0
+        },
+        {
+         "tick": 300,
+         "open": 1,
+         "delivered": 4,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.3025
+        },
+        {
+         "tick": 600,
+         "open": 1,
+         "delivered": 12,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.43292
+        },
+        {
+         "tick": 900,
+         "open": 0,
+         "delivered": 22,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.49111
+        },
+        {
+         "tick": 1200,
+         "open": 2,
+         "delivered": 23,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.38854
+        }
+       ]
+      }
+     ],
+     "kpis_mean": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 1.499,
+      "p95_fulfillment_min": 2.09,
+      "throughput_per_hour": 69.0,
+      "robot_utilization": 0.38854,
+      "congestion_index": 0.0,
+      "distance_total": 1366.0,
+      "energy_total": 29.72,
+      "orders_delivered": 23.0,
+      "orders_open": 2.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "kpis_std": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 0.0,
+      "p95_fulfillment_min": 0.0,
+      "throughput_per_hour": 0.0,
+      "robot_utilization": 0.0,
+      "congestion_index": 0.0,
+      "distance_total": 0.0,
+      "energy_total": 0.0,
+      "orders_delivered": 0.0,
+      "orders_open": 0.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "wall_s_mean": 0.21,
+     "ticks_per_second": 5814.0,
+     "planning": {
+      "decisions": 0.0,
+      "simulated": 0.0
+     }
+    },
+    "nexus_full": {
+     "runs": [
+      {
+       "scale": "tiny",
+       "seed": 42,
+       "strategy": "nexus_full",
+       "robots": 4,
+       "zones": 4,
+       "orders_per_hour": 90.0,
+       "kpis": {
+        "tick": 1200,
+        "sim_hours": 0.3333,
+        "orders_created": 25,
+        "orders_delivered": 23,
+        "orders_open": 2,
+        "orders_pending": 1,
+        "orders_late": 0,
+        "orders_overdue_open": 0,
+        "orders_cancelled": 0,
+        "avg_fulfillment_min": 1.499,
+        "p50_fulfillment_min": 1.467,
+        "p95_fulfillment_min": 2.09,
+        "sla_breach_rate": 0.0,
+        "sla_breach_rate_projected": 0.0,
+        "throughput_per_hour": 69.0,
+        "robot_utilization": 0.38854,
+        "robot_availability": 1.0,
+        "robots_total": 4,
+        "robots_operational": 4,
+        "distance_total": 1366,
+        "energy_total": 29.72,
+        "congestion_index": 0.0,
+        "wait_ticks_per_robot_hour": 0.0,
+        "replans": 0,
+        "failures": 0,
+        "charging_sessions": 0,
+        "inventory_units": 5299,
+        "avg_lateness_min": 0.0
+       },
+       "score": 2.4677,
+       "wall_s": 0.2,
+       "ticks_per_second": 5973.1,
+       "diagnostics": {
+        "max_wait_ticks": 0.0,
+        "min_battery": 62.64,
+        "zone_max_ratio": 1.0,
+        "overcap_ticks": 0.0,
+        "overcap_share": 0.0,
+        "stuck_robot_ticks": 0.0,
+        "charger_starved_ticks": 0.0,
+        "stockouts": 0.0,
+        "failures": 0.0,
+        "replans": 0.0,
+        "events": 2938.0,
+        "allocations": 0.0
+       },
+       "timeline": [
+        {
+         "tick": 0,
+         "open": 0,
+         "delivered": 0,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.0
+        },
+        {
+         "tick": 300,
+         "open": 1,
+         "delivered": 4,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.3025
+        },
+        {
+         "tick": 600,
+         "open": 1,
+         "delivered": 12,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.43292
+        },
+        {
+         "tick": 900,
+         "open": 0,
+         "delivered": 22,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.49111
+        },
+        {
+         "tick": 1200,
+         "open": 2,
+         "delivered": 23,
+         "breach_projected": 0.0,
+         "congestion": 0,
+         "utilization": 0.38854
+        }
+       ]
+      }
+     ],
+     "kpis_mean": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 1.499,
+      "p95_fulfillment_min": 2.09,
+      "throughput_per_hour": 69.0,
+      "robot_utilization": 0.38854,
+      "congestion_index": 0.0,
+      "distance_total": 1366.0,
+      "energy_total": 29.72,
+      "orders_delivered": 23.0,
+      "orders_open": 2.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "kpis_std": {
+      "sla_breach_rate_projected": 0.0,
+      "sla_breach_rate": 0.0,
+      "avg_fulfillment_min": 0.0,
+      "p95_fulfillment_min": 0.0,
+      "throughput_per_hour": 0.0,
+      "robot_utilization": 0.0,
+      "congestion_index": 0.0,
+      "distance_total": 0.0,
+      "energy_total": 0.0,
+      "orders_delivered": 0.0,
+      "orders_open": 0.0,
+      "wait_ticks_per_robot_hour": 0.0,
+      "replans": 0.0,
+      "charging_sessions": 0.0
+     },
+     "wall_s_mean": 0.2,
+     "ticks_per_second": 5973.1,
+     "planning": {
+      "decisions": 0.0,
+      "simulated": 0.0
+     }
+    }
+   },
+   "robots": 4,
+   "zones": 4,
+   "orders_per_hour": 90.0
+  }
+ },
+ "generated_at": "2026-08-30T18:36:13+00:00",
+ "config": {
+  "minutes": 20,
+  "seeds": 1,
+  "strategies": [
+   "baseline",
+   "optimized",
+   "ai_planner",
+   "nexus_full"
+  ],
+  "scales": [
+   "tiny"
+  ],
+  "wall_s_total": 2.8
+ },
+ "summary_table": [
+  {
+   "scale": "tiny",
+   "strategy": "baseline",
+   "sla_breach_pct": 0.0,
+   "sla_breach_vs_baseline_pct": 0.0,
+   "avg_fulfillment_min": 1.45,
+   "p95_fulfillment_min": 2.05,
+   "throughput_per_hour": 69.0,
+   "robot_utilization_pct": 40.5,
+   "congestion_index": 0.0,
+   "distance_per_order": 63.2,
+   "energy_per_order": 1.369,
+   "ticks_per_second": 6711.4
+  },
+  {
+   "scale": "tiny",
+   "strategy": "optimized",
+   "sla_breach_pct": 0.0,
+   "sla_breach_vs_baseline_pct": 0.0,
+   "avg_fulfillment_min": 1.5,
+   "p95_fulfillment_min": 2.09,
+   "throughput_per_hour": 69.0,
+   "robot_utilization_pct": 38.9,
+   "congestion_index": 0.0,
+   "distance_per_order": 59.4,
+   "energy_per_order": 1.292,
+   "ticks_per_second": 5752.6
+  },
+  {
+   "scale": "tiny",
+   "strategy": "ai_planner",
+   "sla_breach_pct": 0.0,
+   "sla_breach_vs_baseline_pct": 0.0,
+   "avg_fulfillment_min": 1.5,
+   "p95_fulfillment_min": 2.09,
+   "throughput_per_hour": 69.0,
+   "robot_utilization_pct": 38.9,
+   "congestion_index": 0.0,
+   "distance_per_order": 59.4,
+   "energy_per_order": 1.292,
+   "ticks_per_second": 5814.0
+  },
+  {
+   "scale": "tiny",
+   "strategy": "nexus_full",
+   "sla_breach_pct": 0.0,
+   "sla_breach_vs_baseline_pct": 0.0,
+   "avg_fulfillment_min": 1.5,
+   "p95_fulfillment_min": 2.09,
+   "throughput_per_hour": 69.0,
+   "robot_utilization_pct": 38.9,
+   "congestion_index": 0.0,
+   "distance_per_order": 59.4,
+   "energy_per_order": 1.292,
+   "ticks_per_second": 5973.1
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "description": "Captured at 10:29 sim time after a x1.2 surge and an R07 failure; deterministic answers (LLM off).",
+ "examples": [
+  {
+   "question": "How many orders are open right now?",
+   "intent": "status",
+   "answer": "At 10:29: 40 open orders (28 pending), 11/12 robots operational (2 charging), projected SLA breach 0.5%, average fulfillment 2.1 min (p95 3.8), throughput 363 orders/h, utilization 74%, congestion index 0.03. 1 robot(s) are down.",
+   "latency_ms": 7.5
+  },
+  {
+   "question": "Why are orders slowing down?",
+   "intent": "explain",
+   "answer": "Fleet capacity backlog is currently the largest contributor, accounting for approximately 74% of predicted delay (28 orders waiting for a free robot (oldest 5 min)). Other contributors: Robot unavailability (R07) 13%; Robots charging (R06,R11) 13%. Right now: 40 open orders (28 pending), projected SLA breach 0.5%, p95 fulfillment 3.8 min, utilization 74%.",
+   "latency_ms": 2.5
+  },
+  {
+   "question": "What happens if order volume increases by 40%?",
+   "intent": "whatif",
+   "answer": "Scenario “demand ×1.40”: demand ×1.40. Horizon 45 min, 2 strategies × 1 seed(s) simulated in 8.0s. Reference (no scenario, optimized): SLA breach 11.4%, avg fulfillment 6.9 min, throughput 444/h. optimized: SLA breach 54.9%, avg fulfillment 11.8 min, throughput 401/h, congestion 0.04. baseline: SLA breach 62.1%, avg fulfillment 16.0 min, throughput 349/h, congestion 0.04. Best strategy: optimized — SLA breach 54.9% vs 62.1% for baseline. Under this scenario the current strategy (optimized) projects an SLA breach of 54.9% (vs 11.4% today).",
+   "latency_ms": 7891.6,
+   "note": "captured through the What-If engine directly (the NLQ wrapper hit a backend RecursionError in this run)"
+  },
+  {
+   "question": "Where is R03 and what is it doing?",
+   "intent": "entity",
+   "answer": "R03 is delivering in zone A at cell (11, 13), battery 88%, task TASK-000754, 67 orders completed, 5309 cells traveled. Relations: R03 is_inside A; TASK-000754 assigned_to R03.",
+   "latency_ms": 14.5
+  }
+ ]
+}

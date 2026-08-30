@@ -1,0 +1,3 @@
+# Extra packages for building the pitch deck (on top of the backend environment, which provides numpy).
+python-pptx>=1.0
+matplotlib>=3.9
