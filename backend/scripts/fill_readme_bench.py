@@ -28,15 +28,31 @@ def main() -> int:
         "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for r in rows:
-        delta = f"{r['sla_breach_vs_baseline_pct']:+.2f} pp" if r["sla_breach_vs_baseline_pct"] is not None else "—"
+        delta = (
+            f"{r['sla_breach_vs_baseline_pct']:+.2f} pp"
+            if r["sla_breach_vs_baseline_pct"] is not None
+            else "—"
+        )
         lines.append(
             f"| {r['scale']} | `{r['strategy']}` | **{r['sla_breach_pct']:.2f}%** | {delta} | {r['avg_fulfillment_min']:.2f} min | "
             f"{r['p95_fulfillment_min']:.2f} min | {r['throughput_per_hour']:.0f} | {r['robot_utilization_pct']:.1f}% | "
             f"{r['congestion_index']:.3f} | {r['ticks_per_second']:,.0f} t/s |"
         )
-    charts = [p for p in ("bench_sla_breach_pct.png", "bench_avg_fulfillment_min.png", "bench_throughput_per_hour.png") if (ROOT / "pitch" / "charts" / p).exists()]
+    charts = [
+        p
+        for p in (
+            "bench_sla_breach_pct.png",
+            "bench_avg_fulfillment_min.png",
+            "bench_throughput_per_hour.png",
+        )
+        if (ROOT / "pitch" / "charts" / p).exists()
+    ]
     if charts:
-        lines += ["", "<p align=\"center\">"] + [f'  <img src="pitch/charts/{c}" width="49%" alt="{c}">' for c in charts[:2]] + ["</p>"]
+        lines += (
+            ["", '<p align="center">']
+            + [f'  <img src="pitch/charts/{c}" width="49%" alt="{c}">' for c in charts[:2]]
+            + ["</p>"]
+        )
     lines += ["", END]
     text = README.read_text(encoding="utf-8")
     i, j = text.index(START), text.index(END) + len(END)
