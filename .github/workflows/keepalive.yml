@@ -1,0 +1,22 @@
+name: keep-alive
+
+# Pings the deployed backend every ~10 minutes so Render's free instance never spins down
+# (free tier allows 750 instance-hours/month — enough to stay warm 24/7).
+# Set the target once with:  gh variable set BACKEND_URL --body "https://<service>.onrender.com"
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    if: ${{ vars.BACKEND_URL != '' }}
+    steps:
+      - name: Ping the live twin
+        run: |
+          set +e
+          code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 90 "${{ vars.BACKEND_URL }}/api/health")
+          echo "GET ${{ vars.BACKEND_URL }}/api/health -> HTTP $code"
+          test "$code" = "200" || echo "::warning::backend not healthy (HTTP $code) — waking up or down"

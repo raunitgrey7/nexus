@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     database_url: str | None = None  # e.g. postgresql+asyncpg://nexus:nexus@localhost:5432/nexus
     redis_url: str | None = None  # e.g. redis://localhost:6379/0
     snapshot_every_ticks: int = 600
+    snapshot_ring: int = 120  # how many world snapshots to keep in memory (playback depth)
 
     # ---- LLM -----------------------------------------------------------------------------------
     llm_enabled: bool = True

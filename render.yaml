@@ -1,0 +1,41 @@
+# Render.com Blueprint — deploys the NEXUS backend (live twin API) on the free tier.
+# Dashboard → New + → Blueprint → select this repo → Apply.
+#
+# Free-tier tuning: 512 MB / 0.1 CPU, so the LLM is off (deterministic planners take over),
+# decisions simulate a 30-min horizon sequentially, and the snapshot ring is small. The
+# .github/workflows/keepalive.yml pinger stops the instance from sleeping.
+
+services:
+  - type: web
+    name: nexus-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: NEXUS_LLM_ENABLED
+        value: "false"
+      - key: NEXUS_DECISION_WORKERS
+        value: "1"
+      - key: NEXUS_CANDIDATE_PLANS
+        value: "6"
+      - key: NEXUS_RISK_SEEDS
+        value: "1"
+      - key: NEXUS_SIM_HORIZON_TICKS
+        value: "1800"
+      - key: NEXUS_SNAPSHOT_RING
+        value: "6"
+      - key: NEXUS_SNAPSHOT_EVERY_TICKS
+        value: "1800"
+      - key: NEXUS_LIVE_TICKS_PER_SECOND
+        value: "10"
+      - key: NEXUS_DEFAULT_SCALE
+        value: "small"
+      - key: NEXUS_LOG_JSON
+        value: "true"
+      - key: NEXUS_CORS_ORIGIN_REGEX
+        value: "https?://(localhost|127[.]0[.]0[.]1)(:[0-9]+)?|https://[a-z0-9.-]+[.]vercel[.]app"

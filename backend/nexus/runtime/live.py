@@ -156,7 +156,9 @@ class LiveRuntime:
         self.started_at = time.time()
         self.frame_listeners: list[Callable[[dict[str, Any]], None]] = []
         self.event_sinks: list[Callable[[Event], None]] = []
-        self.snapshots: deque[tuple[int, str, dict[str, float], bytes]] = deque(maxlen=120)
+        self.snapshots: deque[tuple[int, str, dict[str, float], bytes]] = deque(
+            maxlen=max(2, settings.snapshot_ring)
+        )
         self.last_forecast: Forecast | None = None
         self._last_frame_wall = 0.0
         self._decision_thread: threading.Thread | None = None
