@@ -1,5 +1,8 @@
 # NEXUS
 
+> **Live demo:** [control room](https://nexus-twin-psi.vercel.app) · [API + OpenAPI docs](https://nexus-api-3nnv.onrender.com/docs)
+> Free-tier hosting (Render + Vercel): the twin runs 24/7 via a keep-alive pinger; the cloud LLM is off by design — every plan is still validated, optimized, simulated and risk-checked deterministically.
+
 **AI-native Digital Twin & Autonomous Operations Platform** — a virtual world that mirrors a physical operation, plus AI
 agents that understand, predict, simulate and optimize what happens inside it.
 

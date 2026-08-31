@@ -6,7 +6,7 @@
 
 This file is a **speaking script**, not a spec. Three versions of the pitch (30 seconds, 3 minutes,
 10-minute demo), the numbers to memorize, who to sell to, the objections you will get, and the exact
-words to close with. Deliver it with the live app open: **https://nexus-twin.vercel.app** (or
+words to close with. Deliver it with the live app open: **https://nexus-twin-psi.vercel.app** (or
 `make up` locally, or `uv run nexus demo` in a terminal if the network fails you).
 
 ---
@@ -92,7 +92,7 @@ words to close with. Deliver it with the live app open: **https://nexus-twin.ver
 
 ## 4. The 10-minute demo talk track
 
-Open **https://nexus-twin.vercel.app** (Live Twin page). Speed slider to ~50× beforehand so the
+Open **https://nexus-twin-psi.vercel.app** (Live Twin page). Speed slider to ~50× beforehand so the
 floor is busy. Script per click:
 
 | # | You do | You say |

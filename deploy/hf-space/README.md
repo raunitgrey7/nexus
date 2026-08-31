@@ -16,7 +16,7 @@ This Space runs the **NEXUS** backend: an event-sourced warehouse digital twin w
 simulation engine, OR-Tools CP-SAT optimization, Holt-Winters forecasting, and a multi-agent runtime
 that simulates every candidate plan in forked worlds before a risk-gated execution.
 
-- **Control room UI**: https://nexus-twin.vercel.app (Next.js + Three.js, streams this Space over WebSocket)
+- **Control room UI**: https://nexus-twin-psi.vercel.app (Next.js + Three.js, streams this Space over WebSocket)
 - **API docs**: `/docs` on this Space
 - **Repository**: https://github.com/raunitgrey7/nexus
 - **Benchmarks**: SLA breach 41.7% (naive baseline) → **1.8%** (full agentic loop) on identical worlds — see `docs/BENCHMARKS.md`
